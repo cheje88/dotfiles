@@ -16,15 +16,20 @@
 import requests
 
 CITY = "4012176"
-API_KEY = "c0d9a230ecaa640baafa741574740f25"
+# API_KEY = "poner api key"
+API_KEY = ""
 UNITS = "metric"
 UNIT_KEY = "C"
 # UNIT_KEY = "F"
 LANG = "es"
-#LANG = "nl"
-#LANG = "hu"
+# LANG = "nl"
+# LANG = "hu"
 
-REQ = requests.get("http://api.openweathermap.org/data/2.5/weather?id={}&lang={}&appid={}&units={}".format(CITY, LANG,  API_KEY, UNITS))
+REQ = requests.get(
+    "http://api.openweathermap.org/data/2.5/weather?id={}&lang={}&appid={}&units={}".format(
+        CITY, LANG, API_KEY, UNITS
+    )
+)
 try:
     # HTTP CODE = OK
     if REQ.status_code == 200:
