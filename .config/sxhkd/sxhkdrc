@@ -1,0 +1,91 @@
+#  ____ _____ 
+# |  _ \_   _|  Derek Taylor (DistroTube)
+# | | | || |  	http://www.youtube.com/c/DistroTube
+# | |_| || |  	http://www.gitlab.com/dwt1/ 
+# |____/ |_|  	
+#        
+# A customized sxhkdrc for the bspwm window manager.
+# https://github.com/baskerville/sxhkd
+# https://github.com/baskerville/bspwm
+
+
+# WM INDEPENDENT KEYBINDINGS
+
+# make sxhkd reload its configuration files:
+    super + Escape
+        pkill -USR1 -x sxhkd
+
+
+# APPLICATION KEYBINDINGS (Super + Alt + Key)
+
+# terminal emulator
+super + Return
+	 kitty
+# launch pavucontrol
+super + alt + a
+   pavucontrol 
+# launch dmenuunicode 
+# super + alt + m
+#     dmenuunicode
+
+super + d
+  rofi -show drun -show-icons
+
+super + alt + m
+    rofi -modi emoji -show emoji
+
+super + shift + e
+	dmenuunicode
+
+# launch cmus
+# super + alt + c
+#     kitty -e mocp
+# launch newsboat feed reeder
+super + alt + n
+    kitty -e newsboat
+# launch vifm file manager
+super + alt + v
+    kitty -e ~/.config/vifm/scripts/vifmrun
+    
+# DMENU SCRIPTS (Alt+Ctrl+Key)
+
+# run program launcher
+#alt + ctrl + Return
+#super + shift + d
+#dmenu_recency -i -fn Noto-11
+
+# Audiokeys
+XF86AudioMute
+	amixer sset Master toggle; pkill -RTMIN+10 blocks
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master 5%{+,-}; pkill -RTMIN+10 blocks
+XF86Audio{Next,Prev}
+	audacious {next,prev}
+XF86Audio{Pause,Play,Stop}
+	audacious {pause,play,stop}
+XF86Audio{Rewind,Forward}
+	audacious seek {-,+}10
+    
+super + shift + b; {b,l,g}
+	{brave,lowriter,gimp}
+
+# Poweroff/Reboot
+alt + shift + l
+   dmlogout
+
+
+super + shift + x
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+super + shift + BackSpace
+	prompt "Reboot computer?" "sudo -A shutdown -r now"
+
+
+alt + Print
+    flameshot {gui, full} -p ~/Imágenes/flameshot
+
+Print
+    flameshot {gui} -p ~/Imágenes/flameshot
+    # flameshot gui
+
+control + shift + 3
+    flameshot gui
