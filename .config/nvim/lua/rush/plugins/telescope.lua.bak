@@ -1,0 +1,150 @@
+return {
+  "nvim-telescope/telescope.nvim",
+  branch = "0.1.x",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "LinArcX/telescope-command-palette.nvim",
+    "nvim-telescope/telescope-ui-select.nvim",
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    "nvim-telescope/telescope-symbols.nvim",
+    "nvim-telescope/telescope-file-browser.nvim",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    "nvim-tree/nvim-web-devicons",
+    "nvim-lua/popup.nvim",
+    "nvim-telescope/telescope-media-files.nvim",
+    "benfowler/telescope-luasnip.nvim",
+    "olacin/telescope-gitmoji.nvim",
+    "xiyaowong/telescope-emoji.nvim",
+  },
+  config = function()
+    local telescope = require("telescope")
+    local actions = require("telescope.actions")
+    local lst = require("telescope").extensions.luasnip
+    local luasnip = require("luasnip")
+
+    telescope.setup({
+      defaults = {
+        layout_config = {
+          vertical = { width = 0.5 },
+          -- other layout configuration here
+        },
+        path_display = { "truncate " },
+        mappings = {
+          i = {
+            ["<C-k>"] = actions.move_selection_previous, -- move to prev result
+            ["<C-j>"] = actions.move_selection_next, -- move to next result
+            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+          },
+        },
+      },
+      pickers = {
+        find_files = {
+          theme = "dropdown",
+        },
+        live_grep = {
+          theme = "dropdown",
+        },
+      },
+      extensions = {
+        media_files = {
+          -- filetypes whitelist
+          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+          filetypes = { "png", "webp", "pdf", "jpg", "jpeg" },
+          -- find command (defaults to `fd`)
+          find_cmd = "rg",
+          command_open_thumbnail = "kitten icat",
+        },
+        emoji = {
+          action = function(emoji)
+            -- argument emoji is a table.
+            -- {name="", value="", cagegory="", description=""}
+
+            vim.fn.setreg("*", emoji.value)
+            print([[Press p or "*p to paste this emoji]] .. emoji.value)
+
+            -- insert emoji when picked
+            -- vim.api.nvim_put({ emoji.value }, 'c', false, true)
+          end,
+        },
+        luasnip = {
+          search = function(entry)
+            return lst.filter_null(entry.context.trigger)
+              .. " "
+              .. lst.filter_null(entry.context.name)
+              .. " "
+              .. entry.ft
+              .. " "
+              .. lst.filter_description(entry.context.name, entry.context.description)
+              .. lst.get_docstring(luasnip, entry.ft, entry.context)[1]
+          end,
+        },
+        command_palette = {
+          {
+            "File",
+            { "entire selection (C-a)", ':call feedkeys("GVgg")' },
+            { "save current file (C-s)", ":w" },
+            { "save all files (C-A-s)", ":wa" },
+            { "quit (C-q)", ":qa" },
+            { "file browser (C-i)", ":lua require'telescope'.extensions.file_browser.file_browser()", 1 },
+            { "search word (A-w)", ":lua require('telescope.builtin').live_grep()", 1 },
+            { "git files (A-f)", ":lua require('telescope.builtin').git_files()", 1 },
+            { "files (C-f)", ":lua require('telescope.builtin').find_files()", 1 },
+          },
+          {
+            "Help",
+            { "tips", ":help tips" },
+            { "cheatsheet", ":help index" },
+            { "tutorial", ":help tutor" },
+            { "summary", ":help summary" },
+            { "quick reference", ":help quickref" },
+            { "search help(F1)", ":lua require('telescope.builtin').help_tags()", 1 },
+          },
+          {
+            "Code",
+            { "Preview markdown", ":Glow" },
+            { "Reformat code", ":Reformat" },
+          },
+          {
+            "Vim",
+            { "reload vimrc", ":source $MYVIMRC" },
+            { "check health", ":checkhealth" },
+            { "jumps (Alt-j)", ":lua require('telescope.builtin').jumplist()" },
+            { "commands", ":lua require('telescope.builtin').commands()" },
+            { "command history", ":lua require('telescope.builtin').command_history()" },
+            { "registers (A-e)", ":lua require('telescope.builtin').registers()" },
+            { "colorshceme", ":lua require('telescope.builtin').colorscheme()", 1 },
+            { "vim options", ":lua require('telescope.builtin').vim_options()" },
+            { "keymaps", ":lua require('telescope.builtin').keymaps()" },
+            { "buffers", ":Telescope buffers" },
+            { "search history (C-h)", ":lua require('telescope.builtin').search_history()" },
+            { "paste mode", ":set paste!" },
+            { "cursor line", ":set cursorline!" },
+            { "cursor column", ":set cursorcolumn!" },
+            { "spell checker", ":set spell!" },
+            { "relative number", ":set relativenumber!" },
+            { "search highlighting (F12)", ":set hlsearch!" },
+          },
+        },
+      },
+    })
+    require("telescope").load_extension("file_browser")
+    require("telescope").load_extension("command_palette")
+    require("telescope").load_extension("ui-select")
+    require("telescope").load_extension("media_files")
+    require("telescope").load_extension("emoji")
+    require("telescope").load_extension("gitmoji")
+    require("telescope").load_extension("fzf")
+    telescope.load_extension("fzf")
+    telescope.load_extension("media_files")
+
+    -- set keymaps
+    local keymap = vim.keymap -- for conciseness
+
+    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
+    keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
+    keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find tags" })
+    keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+  end,
+}

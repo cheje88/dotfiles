@@ -1,0 +1,27 @@
+return {
+  {
+    "vimwiki/vimwiki",
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          path = "~/Dropbox/vimwiki/",
+          syntax = "markdown",
+          ext = ".md",
+        },
+        { path = "~/Dropbox/vimwiki-promocion/", syntax = "markdown", ext = ".md" },
+        { path = "~/Dropbox/vimwiki-trabajo/", syntax = "markdown", ext = ".md" },
+      }
+      vim.g.vimwiki_ext2syntax = { [".md"] = "markdown", [".markdown"] = "markdown", [".mdown"] = "markdown" }
+      vim.g.vimwiki_use_mouse = 1
+      vim.g.vimwiki_markdown_link_ext = 1
+    end,
+    -- vim.cmd([[
+    -- :hi VimwikiHeader1 guifg=#FF79C6
+    -- :hi VimwikiHeader2 guifg=#50FA7B
+    -- :hi VimwikiHeader3 guifg=#BD93F9
+    -- :hi VimwikiHeader4 guifg=#F1FA8C
+    -- :hi VimwikiHeader5 guifg=#A3F7FF
+    -- :hi VimwikiHeader6 guifg=#434758
+    -- ]]),
+  },
+}
