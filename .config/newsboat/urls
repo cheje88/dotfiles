@@ -1,32 +1,24 @@
-https://www.phoronix.com/rss.php "~NEWSFEED: Phoronix"
-https://linux.softpedia.com/backend.xml "~NEWSFEED: Softpedia (Linux)"
-https://opensource.com/feed "~NEWSFEED: Opensource.com"
-
-
-https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "~YOUTUBE: DistroTube"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "~YOUTUBE: Luke Smith"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCv1Kcz-CuGM6mxzL3B1_Eiw "~YOUTUBE: The Linux Gamer"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "~YOUTUBE: Linus Tech Tips"
-
-
-https://www.reddit.com/r/linux.rss "~REDDIT: r/linux"
-https://www.reddit.com/r/commandline.rss "~REDDIT: r/commandline"
-https://www.reddit.com/r/linux4noobs.rss "~REDDIT: r/linux4noobs"
-https://www.reddit.com/r/linuxquestions.rss "~REDDIT: r/linuxquestions"
-https://www.reddit.com/r/archlinux.rss "~REDDIT: r/archlinux"
-https://www.reddit.com/r/vim.rss "~REDDIT: r/vim"
-https://www.reddit.com/r/unixporn.rss "~REDDIT: r/unixporn"
-https://www.reddit.com/r/neovim.rss "REDDIT: r/neovim"
-https://www.reddit.com/r/LaTeX.rss "REDDIT: r/LaTeX"
-https://www.reddit.com/r/ManjaroLinux.rss "REDDIT: r/Manjaro"
-
-
-
-
-http://innovacioneducativa.wordpress.com/feed/
-http://linuxadictos.com/feed/
-http://www.meneame.net/rss2.php?meta=100
-http://www.muylinux.com/feed
-http://feeds.feedburner.com/redusers/internacional
-http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml
-http://cienciaes.com/general.xml
+https://www.phoronix.com/rss.php NEWSFEED: Phoronix
+https://linux.softpedia.com/backend.xml NEWSFEED: Softpedia (Linux)
+https://opensource.com/feed ~NEWSFEED: Opensource.com
+https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg YOUTUBE: DistroTube
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA YOUTUBE: Luke Smith
+https://www.youtube.com/feeds/videos.xml?channel_id=UCv1Kcz-CuGM6mxzL3B1_Eiw YOUTUBE: The Linux Gamer
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw YOUTUBE: Linus Tech Tips
+https://www.reddit.com/r/linux.rss REDDIT: r/linux
+https://www.reddit.com/r/commandline.rss REDDIT: r/commandline
+https://www.reddit.com/r/linux4noobs.rss REDDIT: r/linux4noobs
+https://www.reddit.com/r/linuxquestions.rss REDDIT: r/linuxquestions
+https://www.reddit.com/r/archlinux.rss REDDIT: r/archlinux
+https://www.reddit.com/r/vim.rss REDDIT: r/vim
+https://www.reddit.com/r/unixporn.rss ~REDDIT: r/unixporn
+https://www.reddit.com/r/neovim.rss REDDIT: r/neovim
+https://www.reddit.com/r/LaTeX.rss REDDIT: r/LaTeX
+https://www.reddit.com/r/ManjaroLinux.rss REDDIT: r/Manjaro
+http://innovacioneducativa.wordpress.com/feed/ innovacioneducativa
+http://linuxadictos.com/feed/ Linuxadictos
+http://www.meneame.net/rss2.php?meta=100 meneame
+http://www.muylinux.com/feed muy linux
+http://feeds.feedburner.com/redusers/internacional feedburner
+http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml bbc
+http://cienciaes.com/general.xml cienciaes
