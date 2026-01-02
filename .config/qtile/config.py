@@ -453,7 +453,7 @@ def init_widgets_screen2():
 
 def init_widgets_screen3():
     widgets_screen3 = init_widgets_list()
-    del widgets_screen3[8:21]
+    del widgets_screen3[8:22]
     return widgets_screen3
 
 
