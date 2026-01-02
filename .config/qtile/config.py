@@ -447,13 +447,13 @@ def init_widgets_screen1():
 # All other monitors' bars will display everything but widgets 22 (systray) and 23 (spacer).
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[22:24]
+    del widgets_screen2[20:22]
     return widgets_screen2
 
 
 def init_widgets_screen3():
     widgets_screen3 = init_widgets_list()
-    del widgets_screen3[10:24]
+    del widgets_screen3[8:21]
     return widgets_screen3
 
 

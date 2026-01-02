@@ -1,6 +1,6 @@
 #! /bin/bash
 # sleep 3s && ~/.screenlayout/3mon.sh &
-sleep 3s && ~/.screenlayout/2monhome.sh &
+sleep 3s && ~/.screenlayout/3mon.sh &
 sleep 25s && picom &
 # nitrogen --random --set-scaled &
 sleep 8s && feh --bg-fill --randomize ~/Dropbox/Fotos/Fondos/* &
