@@ -210,8 +210,8 @@ keys = [
         desc="Toggle hide/show all windows on current group",
     ),
     # Switch focus of monitors
-    Key([MOD], "comma", lazy.next_screen(), desc="Move focus to next monitor"),
-    Key([MOD], "period", lazy.prev_screen(), desc="Move focus to prev monitor"),
+    Key([MOD], "period", lazy.next_screen(), desc="Move focus to next monitor"),
+    Key([MOD], "comma", lazy.prev_screen(), desc="Move focus to prev monitor"),
 ]
 
 groups = []
