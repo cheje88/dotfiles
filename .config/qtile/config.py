@@ -65,7 +65,7 @@ def maximize_by_switching_layout(qtile):
 
 keys = [
     # The essentials
-    Key([MOD], "Return", lazy.spawn(MYTERM), desc="Terminal"),
+    Key([MOD], "Return", lazy.spawn("prime-run kitty"), desc="Terminal con nvidia"),
     Key(
         [MOD, "shift"],
         "Return",
