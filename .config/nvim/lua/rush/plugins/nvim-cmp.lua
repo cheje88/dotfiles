@@ -1,0 +1,129 @@
+return {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer", -- source for text in buffer
+    "hrsh7th/cmp-path", -- source for file system paths
+    "hrsh7th/cmp-cmdline",
+    "hrsh7th/nvim-cmp",
+    "L3MON4D3/LuaSnip", -- snippet engine
+    "saadparwaiz1/cmp_luasnip", -- for autocompletion
+    "rafamadriz/friendly-snippets", -- useful snippets
+    "onsails/lspkind.nvim", -- vs-code like pictograms
+    "kdheepak/cmp-latex-symbols",
+    "micangl/cmp-vimtex",
+    "f3fora/cmp-spell",
+  },
+  config = function()
+    local cmp = require("cmp")
+
+    local luasnip = require("luasnip")
+
+    local lspkind = require("lspkind")
+
+    -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
+    require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snips" } })
+
+    cmp.setup({
+      completion = {
+        completeopt = "menu,menuone,preview,noselect",
+      },
+      snippet = { -- configure how nvim-cmp interacts with snippet engine
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+        ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        -- ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
+        ["<C-e>"] = cmp.mapping.abort(), -- close completion window
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      }),
+      ["<Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        elseif luasnip.jumpable(1) then
+          luasnip.jump(1)
+        elseif luasnip.expandable() then
+          luasnip.expand()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+      -- sources for autocompletion
+      sources = cmp.config.sources({
+        { name = "vimtex" },
+        { name = "render-markdown" },
+        { name = "luasnip" }, -- snippets
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "emoji" },
+        { name = "path" }, -- file system paths
+        { name = "buffer" }, -- text within current buffer
+        {
+          name = "spell",
+          keyword_length = 4,
+          option = {
+            keep_all_entries = false,
+            enable_in_context = function()
+              return true
+            end,
+          },
+        },
+        { name = "ultisnips" }, -- For ultisnips users.
+        {
+          name = "latex_symbols",
+          filetype = { "tex", "latex" },
+          option = {
+            cache = true,
+            strategy = 2,
+          },
+        },
+        { name = "nerdfont" },
+      }),
+      formatting = {
+        fields = { "menu", "abbr", "kind" },
+        format = function(entry, item)
+          local menu_icon = {
+            nvim_lsp = "λ",
+            luasnip = "⋗",
+            buffer = "Ω",
+            path = "🖫",
+          }
+
+          item.menu = menu_icon[entry.source.name]
+          return item
+        end,
+      },
+      -- configure lspkind for vs-code like pictograms in completion menu
+      -- formatting = {
+      --   format = lspkind.cmp_format({
+      --     maxwidth = 50,
+      --     ellipsis_char = "...",
+      --   }),
+      -- },
+      require("luasnip").filetype_extend("vimwiki", { "markdown" }),
+      require("luasnip").filetype_extend("markdown", { "tex" }),
+    })
+  end,
+}
