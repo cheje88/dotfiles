@@ -1,0 +1,9 @@
+bibata-rainbow-cursor-theme
+dracula-gtk-theme
+dropbox
+dropbox-cli
+neovim-symlinks
+rainbow
+thunar-dropbox
+ttf-joypixels
+ubuntu-themes
