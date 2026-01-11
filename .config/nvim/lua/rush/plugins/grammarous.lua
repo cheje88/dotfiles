@@ -1,3 +1,0 @@
-return {
-  "kikofmas/grammarous.nvim",
-}

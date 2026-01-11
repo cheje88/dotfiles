@@ -1,6 +1,0 @@
-#!/bin/sh
-
-ROOT=$(df -h | awk '/\/$/ { print $4}') 
-HOME=$(df -h | awk '/\/home/ { print $4}') 
-
-echo " 💾 $ROOT 🏠 $HOME "
