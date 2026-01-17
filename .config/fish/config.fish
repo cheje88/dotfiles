@@ -314,7 +314,7 @@ alias sdn="sudo shutdown -h now"
 alias sdr="sudo shutdown -h now"
 alias twist='twistd web --path .'
 alias vifm='/home/rush/.config/vifm/scripts/vifmrun'
-alias rss='eilmeldung'
+alias rss='newsraft'
 
 
 ### RANDOM COLOR SCRIPT ###
