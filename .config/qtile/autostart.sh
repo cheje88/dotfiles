@@ -1,7 +1,7 @@
 #! /bin/bash
 # sleep 3s && ~/.screenlayout/3mon.sh &
-sleep 3s && ~/.screenlayout/3mon.sh &
-sleep 5s && picom &
+sleep 6s && ~/.screenlayout/3mon.sh &
+sleep 7s && picom &
 # nitrogen --random --set-scaled &
 sleep 8s && feh --bg-fill --randomize ~/Dropbox/Fotos/Fondos/* &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
